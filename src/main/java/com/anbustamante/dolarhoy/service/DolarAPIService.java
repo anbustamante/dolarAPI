@@ -13,42 +13,36 @@ import java.time.LocalDateTime;
 public class DolarAPIService {
 
     public BlueDto getDolarBlue() throws IOException {
-
-        final String URL = "https://dolarhoy.com/";
-        final Document doc = Jsoup.connect(URL).get();
-
-
-        Elements valorCompra = doc.selectXpath("//div[contains(@class, 'tile is-parent is-5')]//div[contains(@class, 'tile is-child')]//div[contains(@class, 'values')]//div[contains(@class, 'compra')]//div[contains(@class, 'val')]");
-        Elements valorVenta = doc.selectXpath("//div[contains(@class, 'tile is-parent is-5')]//div[contains(@class, 'tile is-child')]//div[contains(@class, 'values')]//div[contains(@class, 'venta')]//div[contains(@class, 'val')]");
-
-
-
-        BlueDto dto = new BlueDto();
-        dto.setFecha(LocalDateTime.now());
-        dto.setCompra(valorCompra.text());
-        dto.setVenta(valorVenta.text());
-        System.out.println(dto.toString());
-        return dto;
+        try {
+            final String URL = "https://dolarhoy.com/";
+            final Document doc = Jsoup.connect(URL).get();
+            String valorCompra = doc.selectXpath("//div[contains(@class, 'tile is-parent is-5')]//div[contains(@class, 'tile is-child')]//div[contains(@class, 'values')]//div[contains(@class, 'compra')]//div[contains(@class, 'val')]").text();
+            String valorVenta = doc.selectXpath("//div[contains(@class, 'tile is-parent is-5')]//div[contains(@class, 'tile is-child')]//div[contains(@class, 'values')]//div[contains(@class, 'venta')]//div[contains(@class, 'val')]").text();
+            return mapping("blue",valorCompra,valorVenta);
+        }catch (IOException e){
+            throw new IOException(e.getMessage());
+        }
     }
 
     public BlueDto getDolarOficial() throws IOException {
-
+        try {
         final String URL = "https://dolarhoy.com/";
         final Document doc = Jsoup.connect(URL).get();
-
-        Elements divOficial = doc.selectXpath("//div[contains(@class, 'tile is-parent is-7 is-vertical')]");
-
-        Elements valorCompra = doc.select("div.is-7:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2)");
-        Elements valorVenta = doc.selectXpath("/html/body/div[3]/div[2]/div[1]/div[1]/div[2]/section/div/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div[2]");
-
-
-
+        String valorCompra = doc.select("div.is-7:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2)").text();
+        String valorVenta = doc.selectXpath("/html/body/div[3]/div[2]/div[1]/div[1]/div[2]/section/div/div/div/div[1]/div/div[2]/div[2]/div/div[2]/div[2]").text();
+        return mapping("oficial",valorCompra,valorVenta);
+        } catch (IOException e){
+            throw new IOException(e.getMessage());
+        }
+    }
+    private BlueDto mapping(String type,String valorCompra, String valorVenta){
         BlueDto dto = new BlueDto();
+        dto.setType(type);
         dto.setFecha(LocalDateTime.now());
-        dto.setCompra(valorCompra.text());
-        dto.setVenta(valorVenta.text());
-        System.out.println(dto.toString());
+        dto.setCompra(valorCompra);
+        dto.setVenta(valorVenta);
         return dto;
     }
+
 
 }
