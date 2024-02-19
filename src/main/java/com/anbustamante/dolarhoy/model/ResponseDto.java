@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BlueDto {
+public class ResponseDto {
     String type;
     LocalDateTime fecha;
     String compra;

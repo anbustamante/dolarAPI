@@ -1,6 +1,6 @@
 package com.anbustamante.dolarhoy.controller;
 
-import com.anbustamante.dolarhoy.model.BlueDto;
+import com.anbustamante.dolarhoy.model.ResponseDto;
 import com.anbustamante.dolarhoy.service.DolarAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +20,12 @@ public class DolarAPIController {
     }
 
     @GetMapping("/dolar/blue")
-    public ResponseEntity<BlueDto> getDolarBlue() throws IOException {
+    public ResponseEntity<ResponseDto> getDolarBlue() throws IOException {
         return ResponseEntity.ok(dolarAPIService.getDolarBlue());
     }
 
     @GetMapping("/dolar/oficial")
-    public ResponseEntity<BlueDto> getDolarOficial() throws IOException {
+    public ResponseEntity<ResponseDto> getDolarOficial() throws IOException {
         return ResponseEntity.ok(dolarAPIService.getDolarOficial());
     }
 
