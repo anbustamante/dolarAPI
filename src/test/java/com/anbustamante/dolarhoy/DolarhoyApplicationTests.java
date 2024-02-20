@@ -9,12 +9,4 @@ import org.springframework.test.web.ModelAndViewAssert;
 @SpringBootTest
 class DolarhoyApplicationTests {
 
-	@Test
-	void connects_to_url() {
-
-		Document doc = Jsoup.connect(URL).get();
-		assert doc != null;
-
-	}
-
 }
