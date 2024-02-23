@@ -1,24 +1,15 @@
 package com.anbustamante.dolarhoy.config;
 
 import com.anbustamante.dolarhoy.model.ErrorResponse;
-import com.anbustamante.dolarhoy.model.FieldError;
 import com.anbustamante.dolarhoy.util.NotFoundException;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
+
+import java.io.IOException;
 
 
 @RestControllerAdvice
@@ -34,6 +25,14 @@ public class RestExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFoundException(final NotFoundException exception) {
+        final ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setHttpStatus(HttpStatus.NOT_FOUND.value());
+        errorResponse.setException(exception.getClass().getSimpleName());
+        errorResponse.setMessage(exception.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
     @ExceptionHandler(IOException.class)
     public ResponseEntity<ErrorResponse> handleIOException(final IOException exception) {
         final ErrorResponse errorResponse = new ErrorResponse();
