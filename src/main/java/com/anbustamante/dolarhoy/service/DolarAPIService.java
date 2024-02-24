@@ -1,9 +1,8 @@
 package com.anbustamante.dolarhoy.service;
 
-import com.anbustamante.dolarhoy.model.BlueDto;
+import com.anbustamante.dolarhoy.model.ResponseDto;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 @Service
 public class DolarAPIService {
 
-    public BlueDto getDolarBlue() throws IOException {
+    public ResponseDto getDolarBlue() throws IOException {
         try {
             final String URL = "https://dolarhoy.com/";
             final Document doc = Jsoup.connect(URL).get();
@@ -24,7 +23,7 @@ public class DolarAPIService {
         }
     }
 
-    public BlueDto getDolarOficial() throws IOException {
+    public ResponseDto getDolarOficial() throws IOException {
         try {
         final String URL = "https://dolarhoy.com/";
         final Document doc = Jsoup.connect(URL).get();
@@ -35,8 +34,10 @@ public class DolarAPIService {
             throw new IOException(e.getMessage());
         }
     }
-    private BlueDto mapping(String type,String valorCompra, String valorVenta){
-        BlueDto dto = new BlueDto();
+
+
+    private ResponseDto mapping(String type, String valorCompra, String valorVenta){
+        ResponseDto dto = new ResponseDto();
         dto.setType(type);
         dto.setFecha(LocalDateTime.now());
         dto.setCompra(valorCompra);
