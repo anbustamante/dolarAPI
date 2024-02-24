@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.anbustamante.dolarhoy.service.DolarAPIServiceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-02-24T18:19:27" hostname="E000104" time="5.363">
+  <properties/>
+  <testcase name="Hace el mapeo correcto" classname="com.anbustamante.dolarhoy.service.DolarAPIServiceTest" time="0.006"/>
+  <testcase name="Trae un document desde dolarhoy.com" classname="com.anbustamante.dolarhoy.service.DolarAPIServiceTest" time="2.877"/>
+  <testcase name="Scrapea correctamente dolarhoy" classname="com.anbustamante.dolarhoy.service.DolarAPIServiceTest" time="1.377"/>
+  <testcase name="Scrapea correctamente lorem ipsum" classname="com.anbustamante.dolarhoy.service.DolarAPIServiceTest" time="1.086"/>
+  <system-out><![CDATA[$1065
+$1085
+Lorem Ipsum
+English
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

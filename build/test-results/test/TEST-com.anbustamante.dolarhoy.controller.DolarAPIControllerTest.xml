@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.anbustamante.dolarhoy.controller.DolarAPIControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-02-24T18:19:22" hostname="E000104" time="4.448">
+  <properties/>
+  <testcase name="retrieveDolarByType devuelve http 200." classname="com.anbustamante.dolarhoy.controller.DolarAPIControllerTest" time="4.38"/>
+  <testcase name="retrieveDolarByType mapea bien blue." classname="com.anbustamante.dolarhoy.controller.DolarAPIControllerTest" time="0.018"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\Exiuser\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.11\f9cb566608fbac6bc7bf54901a7aa11543a989ee\byte-buddy-agent-1.14.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
