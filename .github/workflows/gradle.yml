@@ -23,17 +23,5 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
       - name: Build with Gradle
         run: ./gradlew build
-
-      - name: Build JAR
-        run: gradle buildJar
-
-      - name: Upload JAR to GitHub Releases
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-app.jar
-          path: build/libs/my-app.jar
