@@ -8,23 +8,30 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up JDK 21
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'temurin'
-        java-version: '21'
-        java-package: 'jdk'
-        architecture: 'x64'
+      - name: Set up JDK 21
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          java-package: 'jdk'
+          architecture: 'x64'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-    - name: Build with Gradle
-      run: ./gradlew build
+      - name: Build with Gradle and generate JAR
+        run: ./gradlew jar
 
+      - name: Verify JAR file
+        run: ls build/libs/*.jar
+
+      - name: Upload JAR to artifacts (optional)
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-project-jar
+          path: build/libs/*.jar
